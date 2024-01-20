@@ -1,0 +1,3 @@
+[tools]
+lune = "filiptibell/lune@0.7.11"
+rojo = "rojo-rbx/rojo@7.4.0-rc3"
