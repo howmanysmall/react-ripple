@@ -6,3 +6,4 @@ export { default as useLinear } from "./use-linear";
 export { default as useMotion } from "./use-motion";
 export { default as useSpring } from "./use-spring";
 export { default as useTween } from "./use-tween";
+export { default as useMotionBinding, default as useRipple } from "./use-motion-binding";
