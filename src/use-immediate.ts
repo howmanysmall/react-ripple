@@ -1,9 +1,9 @@
 //!native
 //!optimize 2
 
-import type { MotionGoal, MotionOptions } from "@rbxts/ripple";
-import useGoal from "./use-goal";
 import GoalType from "./goal-type";
+import Ripple from "@rbxts/ripple";
+import useGoal from "./use-goal";
 
 /**
  * Syntax sugar for creating an immediate motion.
@@ -11,6 +11,6 @@ import GoalType from "./goal-type";
  * @param motionOptions
  * @returns
  */
-export default function useImmediate<T extends MotionGoal>(value: T, motionOptions?: MotionOptions) {
+export default function useImmediate<T extends Ripple.MotionGoal>(value: T, motionOptions?: Ripple.MotionOptions) {
 	return useGoal(GoalType.Immediate, value, motionOptions);
 }

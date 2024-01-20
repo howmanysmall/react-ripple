@@ -1,14 +1,20 @@
 //!native
 //!optimize 2
 
-import Ripple, { type MotionGoal } from "@rbxts/ripple";
 import GoalType from "./goal-type";
-import type { Binding } from "@rbxts/roact";
-import useMotion from "./use-motion";
+import Ripple, {
+	type MotionOptions,
+	type MotionGoal,
+	type LinearOptions,
+	type SpringOptions,
+	type TweenOptions,
+} from "@rbxts/ripple";
+import Roact from "@rbxts/roact";
 import getBinding from "./get-binding";
+import useMotion from "./use-motion";
 
-type GoalTuple<T extends MotionGoal> = [binding: Binding<T>, motion: Ripple.Motion<T>];
-type AnyOptions = Ripple.LinearOptions | Ripple.SpringOptions | Ripple.TweenOptions;
+type GoalTuple<T extends MotionGoal> = [binding: Roact.Binding<T>, motion: Ripple.Motion<T>];
+type AnyOptions = LinearOptions | SpringOptions | TweenOptions;
 
 const GOALS_TO_FUNCTIONS: { [goalType in GoalType]: Callback } = {
 	[GoalType.Immediate]: Ripple.immediate,
@@ -26,30 +32,30 @@ const GOALS_TO_FUNCTIONS: { [goalType in GoalType]: Callback } = {
 export default function useGoal<T extends MotionGoal>(
 	goal: GoalType.Immediate,
 	value: T,
-	motionOptions?: Ripple.MotionOptions,
+	motionOptions?: MotionOptions,
 ): LuaTuple<GoalTuple<T>>;
 export default function useGoal<T extends MotionGoal>(
 	goal: GoalType.Linear,
 	value: T,
-	motionOptions?: Ripple.MotionOptions,
-	linearOptions?: Ripple.LinearOptions,
+	motionOptions?: MotionOptions,
+	linearOptions?: LinearOptions,
 ): LuaTuple<GoalTuple<T>>;
 export default function useGoal<T extends MotionGoal>(
 	goal: GoalType.Spring,
 	value: T,
-	motionOptions?: Ripple.MotionOptions,
-	springOptions?: Ripple.SpringOptions,
+	motionOptions?: MotionOptions,
+	springOptions?: SpringOptions,
 ): LuaTuple<GoalTuple<T>>;
 export default function useGoal<T extends MotionGoal>(
 	goal: GoalType.Tween,
 	value: T,
-	motionOptions?: Ripple.MotionOptions,
-	tweenOptions?: Ripple.TweenOptions,
+	motionOptions?: MotionOptions,
+	tweenOptions?: TweenOptions,
 ): LuaTuple<GoalTuple<T>>;
 export default function useGoal<T extends MotionGoal>(
 	goal: GoalType,
 	value: T,
-	motionOptions?: Ripple.MotionOptions,
+	motionOptions?: MotionOptions,
 	goalOptions?: AnyOptions,
 ) {
 	const motion = useMotion(value, motionOptions);
