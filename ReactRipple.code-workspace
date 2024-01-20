@@ -37,7 +37,7 @@
 			"typescriptreact",
 		],
 
-		"vscord.enabled": false,
+		"vscord.enabled": true,
 		"roblox-ts.boundary.mode": "remove",
 	},
 
