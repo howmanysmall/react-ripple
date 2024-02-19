@@ -2,7 +2,7 @@
 //!optimize 2
 
 import Ripple from "@rbxts/ripple";
-import Roact from "@rbxts/roact";
+import React from "@rbxts/react";
 import Symbol from "./symbol";
 
 const AssignedBinding = Symbol("AssignedBinding");
@@ -13,10 +13,10 @@ const AssignedBinding = Symbol("AssignedBinding");
  * @returns
  */
 export default function getBinding<T extends Ripple.MotionGoal>(motion: Ripple.Motion<T>) {
-	if (AssignedBinding in motion) return (motion as unknown as { [key: symbol]: Roact.Binding<T> })[AssignedBinding];
+	if (AssignedBinding in motion) return (motion as unknown as { [key: symbol]: React.Binding<T> })[AssignedBinding];
 
-	const [binding, setBinding] = Roact.createBinding(motion.get());
+	const [binding, setBinding] = React.createBinding(motion.get());
 	motion.onStep(setBinding);
-	(motion as unknown as { [key: symbol]: Roact.Binding<T> })[AssignedBinding] = binding;
+	(motion as unknown as { [key: symbol]: React.Binding<T> })[AssignedBinding] = binding;
 	return binding;
 }

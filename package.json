@@ -1,6 +1,6 @@
 {
 	"name": "@rbxts/react-ripple",
-	"version": "1.2.0",
+	"version": "1.2.0-react.0",
 	"main": "out/init.lua",
 	"repository": "https://github.com/howmanysmall/react-ripple.git",
 	"author": "howmanysmall",
@@ -28,11 +28,11 @@
 		"eslint-plugin-roblox-ts": "^0.0.36",
 		"eslint-plugin-unicorn": "^51.0.1",
 		"prettier": "^3.2.5",
-		"roblox-ts": "^2.3.0",
+		"roblox-ts": "2.3.0-dev-eb0ff9c",
 		"typescript": "^5.3.3"
 	},
 	"dependencies": {
 		"@rbxts/ripple": "^0.8.1",
-		"@rbxts/roact": "npm:@rbxts/react-ts@*"
+		"@rbxts/react": "*"
 	}
 }

@@ -2,7 +2,7 @@
 //!optimize 2
 
 import Ripple from "@rbxts/ripple";
-import { useBinding, useEffect, useRef } from "@rbxts/roact";
+import { useBinding, useEffect, useRef } from "@rbxts/react";
 
 /**
  * The simplest way to use a motion and binding.

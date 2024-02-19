@@ -2,7 +2,7 @@
 //!optimize 2
 
 import Ripple from "@rbxts/ripple";
-import { useEffect, useRef } from "@rbxts/roact";
+import { useEffect, useRef } from "@rbxts/react";
 
 /**
  * Creates a motion and returns it.
