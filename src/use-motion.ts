@@ -1,8 +1,15 @@
 //!native
+//!nonstrict
 //!optimize 2
 
+const RunService = game.GetService("RunService");
 import Ripple from "@rbxts/ripple";
 import { useEffect, useRef } from "@rbxts/react";
+
+const DEFAULT_OPTIONS: Ripple.MotionOptions = {
+	heartbeat: RunService.PostSimulation,
+	start: true,
+};
 
 /**
  * Creates a motion and returns it.
@@ -11,8 +18,12 @@ import { useEffect, useRef } from "@rbxts/react";
  * @returns
  */
 export default function useMotion<T extends Ripple.MotionGoal>(initialValue: T, motionOptions?: Ripple.MotionOptions) {
-	const motion = useRef(Ripple.createMotion(initialValue, motionOptions)).current;
+	const motion = useRef(Ripple.createMotion(initialValue, { ...DEFAULT_OPTIONS, ...motionOptions })).current;
+	function destroyMotionEffect() {
+		return () => motion.destroy();
+	}
 	// eslint-disable-next-line react-hooks/exhaustive-deps
-	useEffect(() => () => motion.destroy(), []);
+	useEffect(destroyMotionEffect, []);
+
 	return motion;
 }

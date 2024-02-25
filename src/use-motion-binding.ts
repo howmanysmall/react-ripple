@@ -1,4 +1,5 @@
 //!native
+//!nonstrict
 //!optimize 2
 
 import Ripple from "@rbxts/ripple";
@@ -22,15 +23,16 @@ export default function useMotionBinding<T extends Ripple.MotionGoal>(motion: Ri
 	const motionReference = useRef(motion);
 	const [binding, setBinding] = useBinding(motionReference.current.get());
 
-	useEffect(() => {
+	function eventEffect() {
 		const currentMotion = motionReference.current;
 		const cleanup = currentMotion.onStep(setBinding);
 		return () => {
 			cleanup();
 			currentMotion.destroy();
 		};
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [motionReference.current, setBinding]);
+	}
+	// eslint-disable-next-line react-hooks/exhaustive-deps
+	useEffect(eventEffect, [motionReference.current, setBinding]);
 
 	return $tuple(binding, motionReference.current);
 }
