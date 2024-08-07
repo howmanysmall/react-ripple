@@ -1,10 +1,9 @@
-//!native
 //!nonstrict
 //!optimize 2
 
 const RunService = game.GetService("RunService");
 import Ripple from "@rbxts/ripple";
-import { useEffect, useRef } from "@rbxts/react";
+import { useEffect, useMemo, useRef } from "@rbxts/react";
 
 const DEFAULT_OPTIONS: Ripple.MotionOptions = {
 	heartbeat: RunService.PostSimulation,
@@ -18,7 +17,10 @@ const DEFAULT_OPTIONS: Ripple.MotionOptions = {
  * @returns
  */
 export default function useMotion<T extends Ripple.MotionGoal>(initialValue: T, motionOptions?: Ripple.MotionOptions) {
-	const motion = useRef(Ripple.createMotion(initialValue, { ...DEFAULT_OPTIONS, ...motionOptions })).current;
+	const motion = useMemo(
+		() => Ripple.createMotion(initialValue, { ...DEFAULT_OPTIONS, ...motionOptions }),
+		[initialValue, motionOptions],
+	);
 	function destroyMotionEffect() {
 		return () => motion.destroy();
 	}

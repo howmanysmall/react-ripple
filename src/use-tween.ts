@@ -1,9 +1,8 @@
-//!native
 //!nonstrict
 //!optimize 2
 
 import GoalType from "./goal-type";
-import Ripple from "@rbxts/ripple";
+import type { MotionGoal, MotionOptions, TweenOptions } from "@rbxts/ripple";
 import useGoal from "./use-goal";
 
 /**
@@ -13,10 +12,10 @@ import useGoal from "./use-goal";
  * @param tweenOptions
  * @returns
  */
-export default function useTween<T extends Ripple.MotionGoal>(
+export default function useTween<T extends MotionGoal>(
 	value: T,
-	motionOptions?: Ripple.MotionOptions,
-	tweenOptions?: Ripple.TweenOptions,
+	motionOptions?: MotionOptions,
+	tweenOptions?: TweenOptions,
 ) {
 	return useGoal(GoalType.Tween, value, motionOptions, tweenOptions);
 }

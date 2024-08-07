@@ -1,10 +1,9 @@
-//!native
 //!nonstrict
 //!optimize 2
 
-import Ripple from "@rbxts/ripple";
 import React from "@rbxts/react";
 import Symbol from "./symbol";
+import type { MotionGoal, Motion } from "@rbxts/ripple";
 
 const AssignedBinding = Symbol("AssignedBinding");
 
@@ -13,7 +12,7 @@ const AssignedBinding = Symbol("AssignedBinding");
  * @param motion
  * @returns
  */
-export default function getBinding<T extends Ripple.MotionGoal>(motion: Ripple.Motion<T>) {
+export default function getBinding<T extends MotionGoal>(motion: Motion<T>) {
 	if (AssignedBinding in motion) return (motion as unknown as { [key: symbol]: React.Binding<T> })[AssignedBinding];
 
 	const [binding, setBinding] = React.createBinding(motion.get());

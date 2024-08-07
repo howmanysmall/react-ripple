@@ -1,9 +1,8 @@
-//!native
 //!nonstrict
 //!optimize 2
 
 import GoalType from "./goal-type";
-import Ripple from "@rbxts/ripple";
+import type { MotionGoal, MotionOptions, LinearOptions } from "@rbxts/ripple";
 import useGoal from "./use-goal";
 
 /**
@@ -13,10 +12,10 @@ import useGoal from "./use-goal";
  * @param linearOptions
  * @returns
  */
-export default function useLinear<T extends Ripple.MotionGoal>(
+export default function useLinear<T extends MotionGoal>(
 	value: T,
-	motionOptions?: Ripple.MotionOptions,
-	linearOptions?: Ripple.LinearOptions,
+	motionOptions?: MotionOptions,
+	linearOptions?: LinearOptions,
 ) {
 	return useGoal(GoalType.Linear, value, motionOptions, linearOptions);
 }

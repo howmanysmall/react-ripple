@@ -1,8 +1,7 @@
-//!native
 //!nonstrict
 //!optimize 2
 
-import Ripple from "@rbxts/ripple";
+import type { Motion, MotionGoal } from "@rbxts/ripple";
 import { useBinding, useEffect, useRef } from "@rbxts/react";
 
 /**
@@ -19,7 +18,7 @@ import { useBinding, useEffect, useRef } from "@rbxts/react";
  * @param motion
  * @returns
  */
-export default function useMotionBinding<T extends Ripple.MotionGoal>(motion: Ripple.Motion<T>) {
+export default function useMotionBinding<T extends MotionGoal>(motion: Motion<T>) {
 	const motionReference = useRef(motion);
 	const [binding, setBinding] = useBinding(motionReference.current.get());
 

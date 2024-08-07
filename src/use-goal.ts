@@ -1,4 +1,3 @@
-//!native
 //!nonstrict
 //!optimize 2
 
@@ -10,11 +9,11 @@ import Ripple, {
 	type SpringOptions,
 	type TweenOptions,
 } from "@rbxts/ripple";
-import React from "@rbxts/react";
+import type { Binding } from "@rbxts/react";
 import getBinding from "./get-binding";
 import useMotion from "./use-motion";
 
-type GoalTuple<T extends MotionGoal> = [binding: React.Binding<T>, motion: Ripple.Motion<T>];
+type GoalTuple<T extends MotionGoal> = [binding: Binding<T>, motion: Ripple.Motion<T>];
 type AnyOptions = LinearOptions | SpringOptions | TweenOptions;
 
 const GOALS_TO_FUNCTIONS: { [goalType in GoalType]: Callback } = {
