@@ -24,9 +24,12 @@ export default function useMotionBinding<T extends MotionGoal>(motion: Motion<T>
 
 	function eventEffect() {
 		const currentMotion = motionReference.current;
-		const cleanup = currentMotion.onStep(setBinding);
+		const cleanup0 = currentMotion.onStep(setBinding);
+		const cleanup1 = currentMotion.onComplete(setBinding);
+
 		return () => {
-			cleanup();
+			cleanup0();
+			cleanup1();
 			currentMotion.destroy();
 		};
 	}
