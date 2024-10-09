@@ -1,17 +1,18 @@
-//!nonstrict
+//!nocheck
+//!nolint
 //!optimize 2
 
-import GoalType from "./goal-type";
+import { getBinding } from "./get-binding";
+import { GoalType } from "./goal-type";
+import { useMotion } from "./use-motion";
+import type { Binding } from "@rbxts/react";
 import Ripple, {
-	type MotionOptions,
-	type MotionGoal,
 	type LinearOptions,
+	type MotionGoal,
+	type MotionOptions,
 	type SpringOptions,
 	type TweenOptions,
 } from "@rbxts/ripple";
-import type { Binding } from "@rbxts/react";
-import getBinding from "./get-binding";
-import useMotion from "./use-motion";
 
 type GoalTuple<T extends MotionGoal> = [binding: Binding<T>, motion: Ripple.Motion<T>];
 type AnyOptions = LinearOptions | SpringOptions | TweenOptions;
@@ -29,30 +30,58 @@ const GOALS_TO_FUNCTIONS: { [goalType in GoalType]: Callback } = {
  * @param value
  * @param motionOptions
  */
-export default function useGoal<T extends MotionGoal>(
+export function useGoal<T extends MotionGoal>(
 	goal: GoalType.Immediate,
 	value: T,
 	motionOptions?: MotionOptions,
 ): LuaTuple<GoalTuple<T>>;
-export default function useGoal<T extends MotionGoal>(
+/**
+ * Uses a goal. I don't really know what this is for.
+ * @param goal
+ * @param value
+ * @param motionOptions
+ * @param linearOptions
+ */
+export function useGoal<T extends MotionGoal>(
 	goal: GoalType.Linear,
 	value: T,
 	motionOptions?: MotionOptions,
 	linearOptions?: LinearOptions,
 ): LuaTuple<GoalTuple<T>>;
-export default function useGoal<T extends MotionGoal>(
+/**
+ * Uses a goal. I don't really know what this is for.
+ * @param goal
+ * @param value
+ * @param motionOptions
+ * @param springOptions
+ */
+export function useGoal<T extends MotionGoal>(
 	goal: GoalType.Spring,
 	value: T,
 	motionOptions?: MotionOptions,
 	springOptions?: SpringOptions,
 ): LuaTuple<GoalTuple<T>>;
-export default function useGoal<T extends MotionGoal>(
+/**
+ * Uses a goal. I don't really know what this is for.
+ * @param goal
+ * @param value
+ * @param motionOptions
+ * @param tweenOptions
+ */
+export function useGoal<T extends MotionGoal>(
 	goal: GoalType.Tween,
 	value: T,
 	motionOptions?: MotionOptions,
 	tweenOptions?: TweenOptions,
 ): LuaTuple<GoalTuple<T>>;
-export default function useGoal<T extends MotionGoal>(
+/**
+ * Uses a goal. I don't really know what this is for.
+ * @param goal
+ * @param value
+ * @param motionOptions
+ * @param goalOptions
+ */
+export function useGoal<T extends MotionGoal>(
 	goal: GoalType,
 	value: T,
 	motionOptions?: MotionOptions,

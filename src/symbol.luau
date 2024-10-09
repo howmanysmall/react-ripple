@@ -5,11 +5,7 @@ export type Symbol = typeof(newproxy(true)) & {[string]: any}
 
 local function Symbol(name: string?): Symbol
 	local self = newproxy(true) :: any
-
-	local wrappedName = "Symbol()"
-	if name then
-		wrappedName = `Symbol({name})`
-	end
+	local wrappedName = if name then `Symbol({name})` else "Symbol()"
 
 	getmetatable(self).__tostring = function()
 		return wrappedName

@@ -39,6 +39,7 @@
 
 		"vscord.enabled": true,
 		"roblox-ts.boundary.mode": "remove",
+		"roblox-ts.command.npm.useNpmScripts": true,
 	},
 
 	"extensions": {

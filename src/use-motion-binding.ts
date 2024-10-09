@@ -1,8 +1,9 @@
-//!nonstrict
+//!nocheck
+//!nolint
 //!optimize 2
 
-import type { Motion, MotionGoal } from "@rbxts/ripple";
 import { useBinding, useEffect, useRef } from "@rbxts/react";
+import type { Motion, MotionGoal } from "@rbxts/ripple";
 
 /**
  * The simplest way to use a motion and binding.
@@ -18,23 +19,22 @@ import { useBinding, useEffect, useRef } from "@rbxts/react";
  * @param motion
  * @returns
  */
-export default function useMotionBinding<T extends MotionGoal>(motion: Motion<T>) {
+export function useMotionBinding<T extends MotionGoal>(motion: Motion<T>) {
 	const motionReference = useRef(motion);
 	const [binding, setBinding] = useBinding(motionReference.current.get());
 
 	function eventEffect() {
 		const currentMotion = motionReference.current;
-		const cleanup0 = currentMotion.onStep(setBinding);
-		const cleanup1 = currentMotion.onComplete(setBinding);
+		const cleanupOnStep = currentMotion.onStep(setBinding);
+		const cleanupOnComplete = currentMotion.onComplete(setBinding);
 
 		return () => {
-			cleanup0();
-			cleanup1();
+			cleanupOnStep();
+			cleanupOnComplete();
 			currentMotion.destroy();
 		};
 	}
-	// eslint-disable-next-line react-hooks/exhaustive-deps
-	useEffect(eventEffect, [motionReference.current, setBinding]);
+	useEffect(eventEffect, []);
 
 	return $tuple(binding, motionReference.current);
 }

@@ -1,9 +1,10 @@
-//!nonstrict
+//!nocheck
+//!nolint
 //!optimize 2
 
-import GoalType from "./goal-type";
-import type { MotionGoal, MotionOptions, LinearOptions } from "@rbxts/ripple";
-import useGoal from "./use-goal";
+import { GoalType } from "./goal-type";
+import { useGoal } from "./use-goal";
+import type { LinearOptions, MotionGoal, MotionOptions } from "@rbxts/ripple";
 
 /**
  * Syntax sugar for creating a linear motion.
@@ -12,7 +13,7 @@ import useGoal from "./use-goal";
  * @param linearOptions
  * @returns
  */
-export default function useLinear<T extends MotionGoal>(
+export function useLinear<T extends MotionGoal>(
 	value: T,
 	motionOptions?: MotionOptions,
 	linearOptions?: LinearOptions,

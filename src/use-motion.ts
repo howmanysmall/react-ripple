@@ -1,9 +1,10 @@
-//!nonstrict
+//!nocheck
+//!nolint
 //!optimize 2
 
 const RunService = game.GetService("RunService");
+import { useEffect, useMemo } from "@rbxts/react";
 import Ripple from "@rbxts/ripple";
-import { useEffect, useMemo, useRef } from "@rbxts/react";
 
 const DEFAULT_OPTIONS: Ripple.MotionOptions = {
 	heartbeat: RunService.PostSimulation,
@@ -16,7 +17,7 @@ const DEFAULT_OPTIONS: Ripple.MotionOptions = {
  * @param motionOptions
  * @returns
  */
-export default function useMotion<T extends Ripple.MotionGoal>(initialValue: T, motionOptions?: Ripple.MotionOptions) {
+export function useMotion<T extends Ripple.MotionGoal>(initialValue: T, motionOptions?: Ripple.MotionOptions) {
 	const motion = useMemo(
 		() => Ripple.createMotion(initialValue, { ...DEFAULT_OPTIONS, ...motionOptions }),
 		[initialValue, motionOptions],
@@ -24,7 +25,7 @@ export default function useMotion<T extends Ripple.MotionGoal>(initialValue: T, 
 	function destroyMotionEffect() {
 		return () => motion.destroy();
 	}
-	// eslint-disable-next-line react-hooks/exhaustive-deps
+	// eslint-disable-next-line react-roblox-hooks/exhaustive-deps
 	useEffect(destroyMotionEffect, []);
 
 	return motion;

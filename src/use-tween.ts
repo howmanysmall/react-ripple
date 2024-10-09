@@ -1,9 +1,10 @@
-//!nonstrict
+//!nocheck
+//!nolint
 //!optimize 2
 
-import GoalType from "./goal-type";
+import { GoalType } from "./goal-type";
+import { useGoal } from "./use-goal";
 import type { MotionGoal, MotionOptions, TweenOptions } from "@rbxts/ripple";
-import useGoal from "./use-goal";
 
 /**
  * Syntax sugar for creating a tween motion.
@@ -12,10 +13,6 @@ import useGoal from "./use-goal";
  * @param tweenOptions
  * @returns
  */
-export default function useTween<T extends MotionGoal>(
-	value: T,
-	motionOptions?: MotionOptions,
-	tweenOptions?: TweenOptions,
-) {
+export function useTween<T extends MotionGoal>(value: T, motionOptions?: MotionOptions, tweenOptions?: TweenOptions) {
 	return useGoal(GoalType.Tween, value, motionOptions, tweenOptions);
 }

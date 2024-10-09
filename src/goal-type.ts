@@ -1,4 +1,5 @@
-//!nonstrict
+//!nocheck
+//!nolint
 //!optimize 2
 
 /**
@@ -27,5 +28,3 @@ export enum GoalType {
 	 */
 	Tween = 3,
 }
-
-export default GoalType;
