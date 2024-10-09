@@ -1,6 +1,3 @@
-//!native
-//!optimize 2
-
 import GoalType from "./goal-type";
 import Ripple from "@rbxts/ripple";
 import useGoal from "./use-goal";

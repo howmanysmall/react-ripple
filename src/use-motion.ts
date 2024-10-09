@@ -1,8 +1,5 @@
-//!native
-//!optimize 2
-
+import { useRef, useEffect } from "@rbxts/react";
 import Ripple from "@rbxts/ripple";
-import { useEffect, useRef } from "@rbxts/roact";
 
 /**
  * Creates a motion and returns it.

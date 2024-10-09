@@ -1,8 +1,4 @@
---!native
---!optimize 2
---!strict
-
-export type Symbol = typeof(newproxy(true)) & {[string]: any}
+export type Symbol = typeof(newproxy(true)) & { [string]: any }
 
 local function Symbol(name: string?): Symbol
 	local self = newproxy(true) :: any

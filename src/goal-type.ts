@@ -1,6 +1,3 @@
-//!native
-//!optimize 2
-
 /**
  * The type of goal to use for a motion.
  */
